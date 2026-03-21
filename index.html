@@ -50,11 +50,7 @@
     transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
     mix-blend-mode: difference;
   }
-  .cursor.expanded {
-    width: 40px;
-    height: 40px;
-    opacity: 0.4;
-  }
+
 
   /* NAV */
   nav {
@@ -350,6 +346,7 @@
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: 1rem;
+    white-space: nowrap;
   }
 
   .work-year {
@@ -862,7 +859,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Artist · Berlin</p>
     <h1 class="hero-title">Karim<br><em>Ben Khelifa</em></h1>
-    <p class="hero-statement">I build encounters with conflict<br>that refuse to show you conflict.</p>
+    <p class="hero-statement">I don't show you war.<br>I make you feel what you have allowed yourself not to feel.</p>
   </div>
   <p class="scroll-hint">Scroll</p>
 </section>
@@ -928,13 +925,13 @@
 
   <!-- IN 36,000 WAYS -->
   <div class="work-item" id="work-1">
-    <div class="work-media">
-      <img class="work-image" src="Trio%20Images%20In36kWays.jpg" alt="In 36,000 Ways installation" loading="lazy">
+    <div class="work-media" style="background:var(--surface);">
+      <img class="work-image" src="Trio%20Images%20In36kWays.jpg" alt="In 36,000 Ways installation" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
     </div>
     <div class="work-info">
       <p class="work-number">001</p>
-      <h3 class="work-title">In 36,000<br>Ways</h3>
-      <p class="work-year">2022 — Ongoing</p>
+      <h3 class="work-title">In 36,000 Ways</h3>
+      <p class="work-year">2023 — Ongoing</p>
       <p class="work-desc">A single fragmentation weapon produces 36,000 shards upon detonation. Each one travels at the speed of sound. Each one is designed to kill.<br><br>
       This installation begins with a single piece of shrapnel collected from the front lines of southern Ukraine. You hold it. Nothing else happens until your imagination does.</p>
       <div class="work-awards">
@@ -954,7 +951,7 @@
       </div>
     </div>
     <div class="work-info">
-      <p class="work-number">003</p>
+      <p class="work-number">002</p>
       <h3 class="work-title">The<br>Enemy</h3>
       <p class="work-year">2013 — 2018</p>
       <p class="work-desc">A multi-user VR installation placing audiences face to face with combatants from opposite sides of three conflicts: Israel/Palestine, the Congo, El Salvador.<br><br>
@@ -969,7 +966,7 @@
       </div>
       <button class="video-toggle" onclick="toggleVideo('enemy-video', 'https://www.youtube.com/embed/X4CK99EI3Ww')">▶ Watch trailer</button>
       <div class="video-container" id="enemy-video">
-        <iframe src="" allowfullscreen></iframe>
+        <iframe src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
       </div>
     </div>
   </div>
@@ -982,7 +979,7 @@
       </div>
     </div>
     <div class="work-info">
-      <p class="work-number">002</p>
+      <p class="work-number">003</p>
       <h3 class="work-title">Seven<br>Grams</h3>
       <p class="work-year">2018 — 2022</p>
       <p class="work-desc">An augmented reality experience that turns your smartphone into the instrument of its own indictment. Seven grams of rare earth minerals. Every phone. Every hand.<br><br>
@@ -995,7 +992,7 @@
       </div>
       <button class="video-toggle" onclick="toggleVideo('sevengrams-video', 'https://www.youtube.com/embed/Gjl0TI6kXUQ')">▶ Watch trailer</button>
       <div class="video-container" id="sevengrams-video">
-        <iframe src="" allowfullscreen></iframe>
+        <iframe src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
       </div>
     </div>
   </div>

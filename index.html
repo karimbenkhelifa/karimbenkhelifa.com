@@ -42,7 +42,7 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to b
 .scroll-hint::before{content:'';display:block;width:40px;height:1px;background:var(--text-muted);}
 
 .section-label{font-family:var(--mono);font-size:0.8rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:3rem;}
-.section-divider{width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--accent-dim),transparent);margin:0 auto;}
+
 
 #manifesto{padding:10rem 3rem;max-width:900px;margin:0 auto;}
 .manifesto-text{font-size:clamp(1.25rem,2.2vw,1.65rem);line-height:1.9;font-weight:300;}
@@ -87,8 +87,8 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to b
 .conflict-placeholder{width:700px;height:467px;background:var(--surface);display:flex;align-items:center;justify-content:center;}
 .placeholder-text{font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);text-align:center;line-height:2;}
 .scroll-instruction{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;color:var(--text-muted);text-transform:uppercase;margin-top:1.5rem;display:flex;align-items:center;gap:1rem;}
-.scroll-instruction::before{content:'&#8592;';color:var(--accent);}
-.scroll-instruction::after{content:'&#8594;';color:var(--accent);}
+.scroll-instruction::before{content:'\2190';color:var(--accent);}
+.scroll-instruction::after{content:'\2192';color:var(--accent);}
 
 #about{padding:10rem 3rem;display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;align-items:start;max-width:1400px;margin:0 auto;}
 .about-portrait{position:sticky;top:8rem;}
@@ -186,7 +186,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
   </div>
 </section>
 
-<div class="section-divider"></div>
+
 
 <section id="works">
   <div class="works-header">
@@ -219,8 +219,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
 
   <!-- 002 THE ENEMY -->
   <div class="work-item reverse" id="work-2">
-    <div class="work-media">
-      <img src="theenemy.jpg" alt="The Enemy" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+    <div class="work-media" style="aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#0a0a08;">
+      <img src="theenemy.jpg" alt="The Enemy" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block;">
     </div>
     <div class="work-info">
       <p class="work-number">002</p>
@@ -381,7 +381,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
   <p class="scroll-instruction">Drag to explore</p>
 </section>
 
-<div class="section-divider"></div>
+
 
 <section id="about">
   <div class="about-portrait">

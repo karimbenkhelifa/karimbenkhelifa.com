@@ -146,9 +146,7 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 1.2s var(--transition) 0.8s forwards;
+    opacity: 1;
   }
 
   @keyframes fadeUp {
@@ -200,7 +198,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    animation: fadeUp 1s var(--transition) 1.8s both;
+
   }
 
   .scroll-hint::before {
@@ -240,18 +238,16 @@
 
   .manifesto-text p {
     margin-bottom: 1.8rem;
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
+    opacity: 1;
+    transform: none;
   }
 
   .manifesto-text p.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 
-  /* Fallback: if JS fails, show all */
-  .no-js .manifesto-text p { opacity: 1; transform: none; }
+
 
   .manifesto-text p.accent-line {
     color: var(--accent);
@@ -269,10 +265,7 @@
     letter-spacing: 0.15em;
     color: var(--text-muted);
     margin-top: 4rem;
-    opacity: 0;
-    transition: opacity 1s 0.5s;
   }
-  .manifesto-signature.visible { opacity: 1; }
 
   /* WORKS */
   #works {
@@ -299,9 +292,7 @@
     grid-template-columns: 1fr 1fr;
     min-height: 90vh;
     border-top: 1px solid var(--text-muted);
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.9s var(--transition), transform 0.9s var(--transition);
+    opacity: 1;
   }
 
   .work-item.visible {
@@ -668,9 +659,7 @@
     gap: 1.5rem;
     padding: 1rem 0;
     border-bottom: 1px solid rgba(74,72,64,0.3);
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.6s var(--transition), transform 0.6s var(--transition);
+    opacity: 1;
   }
 
   .credential-item.visible {
@@ -1035,180 +1024,140 @@
     <div class="conflicts-track" id="conflictsTrack">
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 01<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>01.jpg</span></p>
-        </div>
+        <img src="1.jpg" alt="Field work 01" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">01</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 02<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>02.jpg</span></p>
-        </div>
+        <img src="2.jpg" alt="Field work 02" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">02</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 03<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>03.jpg</span></p>
-        </div>
+        <img src="3.jpg" alt="Field work 03" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">03</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 04<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>04.jpg</span></p>
-        </div>
+        <img src="4.jpg" alt="Field work 04" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">04</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 05<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>05.jpg</span></p>
-        </div>
+        <img src="5.jpg" alt="Field work 05" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">05</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 06<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>06.jpg</span></p>
-        </div>
+        <img src="6.jpg" alt="Field work 06" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">06</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 07<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>07.jpg</span></p>
-        </div>
+        <img src="7.jpg" alt="Field work 07" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">07</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 08<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>08.jpg</span></p>
-        </div>
+        <img src="8.jpg" alt="Field work 08" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">08</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 09<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>09.jpg</span></p>
-        </div>
+        <img src="9.jpg" alt="Field work 09" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">09</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 10<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>10.jpg</span></p>
-        </div>
+        <img src="10.jpg" alt="Field work 10" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">10</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 11<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>11.jpg</span></p>
-        </div>
+        <img src="11.jpg" alt="Field work 11" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">11</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 12<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>12.jpg</span></p>
-        </div>
+        <img src="12.jpg" alt="Field work 12" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">12</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 13<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>13.jpg</span></p>
-        </div>
+        <img src="13.jpg" alt="Field work 13" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">13</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 14<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>14.jpg</span></p>
-        </div>
+        <img src="14.jpg" alt="Field work 14" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">14</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 15<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>15.jpg</span></p>
-        </div>
+        <img src="15.jpg" alt="Field work 15" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">15</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 16<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>16.jpg</span></p>
-        </div>
+        <img src="16.jpg" alt="Field work 16" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">16</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 17<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>17.jpg</span></p>
-        </div>
+        <img src="17.jpg" alt="Field work 17" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">17</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 18<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>18.jpg</span></p>
-        </div>
+        <img src="18.jpg" alt="Field work 18" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">18</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 19<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>19.jpg</span></p>
-        </div>
+        <img src="19.jpg" alt="Field work 19" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">19</p>
         </div>
       </div>
 
       <div class="conflict-item">
-        <div class="conflict-placeholder">
-          <p class="placeholder-label">Photo 20<br><br><span style="color:var(--accent-dim);font-size:0.5rem;">Replace with:<br>20.jpg</span></p>
-        </div>
+        <img src="20.jpg" alt="Field work 20" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
         <div class="conflict-overlay">
           <p class="conflict-name">20</p>
         </div>
@@ -1351,10 +1300,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
 
-document.querySelectorAll('.manifesto-text p, .work-item, .credential-item, .manifesto-signature').forEach((el, i) => {
-  el.dataset.delay = (i % 6) * 80;
-  observer.observe(el);
-});
+// Elements visible by default, subtle fade on scroll for non-critical elements
 
 // VIDEO TOGGLE
 function toggleVideo(id) {

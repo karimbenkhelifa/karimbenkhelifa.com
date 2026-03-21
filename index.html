@@ -35,8 +35,7 @@
     font-family: var(--serif);
     font-weight: 300;
     overflow-x: hidden;
-    cursor: none;
-  }
+    }
 
   /* CUSTOM CURSOR */
   .cursor {
@@ -414,8 +413,7 @@
     background: none;
     border: 1px solid var(--accent-dim);
     padding: 0.6rem 1.2rem;
-    cursor: none;
-    transition: background 0.3s, color 0.3s;
+      transition: background 0.3s, color 0.3s;
     margin-bottom: 1.5rem;
   }
   .video-toggle:hover {
@@ -846,8 +844,6 @@
 <body>
 
 <a class="skip-nav" href="#manifesto">Skip to content</a>
-<div class="cursor" id="cursor"></div>
-
 <!-- NAV -->
 <nav>
   <a class="nav-name" href="#hero">Karim Ben Khelifa</a>
@@ -933,7 +929,7 @@
   <!-- IN 36,000 WAYS -->
   <div class="work-item" id="work-1">
     <div class="work-media">
-      <img class="work-image" src="Trio_Images_In36kWays.jpg" alt="In 36,000 Ways installation" loading="lazy">
+      <img class="work-image" src="Trio%20Images%20In36kWays.jpg" alt="In 36,000 Ways installation" loading="lazy">
     </div>
     <div class="work-info">
       <p class="work-number">001</p>
@@ -971,9 +967,9 @@
         <span class="award-tag">MIT Museum</span>
         <span class="award-tag">Institut du Monde Arabe</span>
       </div>
-      <button class="video-toggle" onclick="toggleVideo('enemy-video')">▶ Watch trailer</button>
+      <button class="video-toggle" onclick="toggleVideo('enemy-video', 'https://www.youtube.com/embed/X4CK99EI3Ww')">▶ Watch trailer</button>
       <div class="video-container" id="enemy-video">
-        <iframe src="https://www.youtube.com/embed/X4CK99EI3Ww" allowfullscreen></iframe>
+        <iframe src="" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -997,9 +993,9 @@
         <span class="award-tag">FIPADOC Best Digital Storytelling</span>
         <span class="award-tag">Prix Europa Honorable Mention</span>
       </div>
-      <button class="video-toggle" onclick="toggleVideo('sevengrams-video')">▶ Watch trailer</button>
+      <button class="video-toggle" onclick="toggleVideo('sevengrams-video', 'https://www.youtube.com/embed/Gjl0TI6kXUQ')">▶ Watch trailer</button>
       <div class="video-container" id="sevengrams-video">
-        <iframe src="https://www.youtube.com/embed/Gjl0TI6kXUQ" allowfullscreen></iframe>
+        <iframe src="" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -1224,37 +1220,9 @@
       </div>
     </div>
 
-    <div class="press-quote">
-      <blockquote>"Imagination moves, faster than any image, toward the big boom that is still silent in the air."</blockquote>
-      <cite>Sandra Gaudenzi, IDFA DocLab 2025, on In 36,000 Ways</cite>
-    </div>
-
-  </div>
+      </div>
 </section>
 
-
-<!-- PRESS -->
-<section id="press" style="padding:6rem 3rem; background:var(--bg2); max-width:1400px; margin:0 auto;">
-  <p class="section-label">Press</p>
-  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:2rem; margin-top:3rem;">
-    <div class="press-quote" style="margin:0;">
-      <blockquote>"Deeply affecting."</blockquote>
-      <cite>The New York Times</cite>
-    </div>
-    <div class="press-quote" style="margin:0;">
-      <blockquote>"A fully engrossing experience."</blockquote>
-      <cite>Time Magazine</cite>
-    </div>
-    <div class="press-quote" style="margin:0;">
-      <blockquote>"Breathtaking."</blockquote>
-      <cite>Le Devoir</cite>
-    </div>
-    <div class="press-quote" style="margin:0;">
-      <blockquote>"Striking."</blockquote>
-      <cite>The Jerusalem Post</cite>
-    </div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section id="contact">
@@ -1278,16 +1246,7 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// CURSOR
-const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a, button, .conflict-item').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
-});
+// Standard cursor used
 
 // SCROLL REVEAL
 const observer = new IntersectionObserver((entries) => {
@@ -1303,48 +1262,60 @@ const observer = new IntersectionObserver((entries) => {
 // Elements visible by default, subtle fade on scroll for non-critical elements
 
 // VIDEO TOGGLE
-function toggleVideo(id) {
+function toggleVideo(id, url) {
   const container = document.getElementById(id);
+  const iframe = container.querySelector('iframe');
+  const isActive = container.classList.contains('active');
   container.classList.toggle('active');
+  if (!isActive && url) {
+    iframe.src = url;
+  } else {
+    iframe.src = '';
+  }
   const btn = container.previousElementSibling;
   btn.textContent = container.classList.contains('active') ? '✕ Close' : '▶ Watch trailer';
 }
 
 // HORIZONTAL DRAG SCROLL
 const track = document.getElementById('conflictsTrack');
-let isDown = false, startX, scrollLeft;
 
+// Scroll wheel converts vertical scroll to horizontal
+track.addEventListener('wheel', e => {
+  e.preventDefault();
+  track.scrollLeft += e.deltaY + e.deltaX;
+}, { passive: false });
+
+// Drag to scroll
+let isDown = false, startX, scrollLeft;
 track.addEventListener('mousedown', e => {
   isDown = true;
   track.style.cursor = 'grabbing';
   startX = e.pageX - track.offsetLeft;
   scrollLeft = track.scrollLeft;
 });
-track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = 'ew-resize'; });
-track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'ew-resize'; });
+document.addEventListener('mouseup', () => { isDown = false; if(track) track.style.cursor = 'ew-resize'; });
 track.addEventListener('mousemove', e => {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - track.offsetLeft;
-  const walk = (x - startX) * 1.5;
-  track.scrollLeft = scrollLeft - walk;
+  track.scrollLeft = scrollLeft - (x - startX) * 1.5;
 });
 
 // Touch scroll
+let touchStartX, touchScrollLeft;
 track.addEventListener('touchstart', e => {
-  startX = e.touches[0].pageX - track.offsetLeft;
-  scrollLeft = track.scrollLeft;
+  touchStartX = e.touches[0].pageX;
+  touchScrollLeft = track.scrollLeft;
 }, { passive: true });
 track.addEventListener('touchmove', e => {
-  const x = e.touches[0].pageX - track.offsetLeft;
-  const walk = (x - startX) * 1.5;
-  track.scrollLeft = scrollLeft - walk;
+  const x = e.touches[0].pageX;
+  track.scrollLeft = touchScrollLeft - (x - touchStartX) * 1.5;
 }, { passive: true });
 
 // Make track scrollable
 track.style.overflowX = 'scroll';
 track.style.scrollbarWidth = 'none';
-track.style.webkitOverflowScrolling = 'touch';
+track.style.msOverflowStyle = 'none';
 
 // Nav active state
 const sections = document.querySelectorAll('section[id]');

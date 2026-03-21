@@ -4,845 +4,140 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karim Ben Khelifa</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a08'/><text y='.9em' font-size='60' x='50' text-anchor='middle' dominant-baseline='middle' dy='0.1em' fill='%23c8a96e' font-family='serif'>K</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%238B6914'/><circle cx='50' cy='50' r='28' fill='%23C8A96E'/><circle cx='50' cy='50' r='14' fill='%234A3010'/><circle cx='50' cy='50' r='5' fill='%23000'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Suisse+Int%27l:wght@300;400&family=Fragment+Mono&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
-
 <style>
-  :root {
-    --bg: #0a0a08;
-    --bg2: #111110;
-    --surface: #161614;
-    --text: #e8e4dc;
-    --text-dim: #8a8578;
-    --text-muted: #4a4840;
-    --accent: #c8a96e;
-    --accent-dim: #7a6540;
-    --red: #8b2020;
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --mono: 'Space Mono', monospace;
-    --transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--serif);
-    font-weight: 300;
-    overflow-x: hidden;
-    }
-
-  /* CUSTOM CURSOR */
-  .cursor {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
-    mix-blend-mode: difference;
-  }
-
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    padding: 2rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    mix-blend-mode: normal;
-  }
-
-  nav::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(10,10,8,0.95) 0%, transparent 100%);
-    pointer-events: none;
-  }
-
-  .nav-name {
-    font-family: var(--serif);
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text);
-    text-decoration: none;
-    position: relative;
-    z-index: 1;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-    position: relative;
-    z-index: 1;
-  }
-
-  .nav-links a {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .nav-links a:hover { color: var(--accent); }
-
-  /* HERO */
-  #hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 3rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(ellipse at 70% 30%, rgba(139,32,32,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 20% 80%, rgba(200,169,110,0.05) 0%, transparent 50%);
-  }
-
-  .hero-line {
-    position: absolute;
-    top: 0;
-    left: 3rem;
-    width: 1px;
-    height: 0;
-    background: var(--accent-dim);
-    animation: lineGrow 2s var(--transition) 0.5s forwards;
-  }
-
-  @keyframes lineGrow {
-    to { height: 100%; }
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    opacity: 1;
-  }
-
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-title {
-    font-size: clamp(3.5rem, 8vw, 8rem);
-    font-weight: 300;
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: 2rem;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--text-dim);
-  }
-
-  .hero-statement {
-    font-size: clamp(1rem, 1.8vw, 1.3rem);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--text-dim);
-    max-width: 600px;
-    line-height: 1.6;
-    border-left: 1px solid var(--accent-dim);
-    padding-left: 1.5rem;
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    right: 3rem;
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-
-  }
-
-  .scroll-hint::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--text-muted);
-  }
-
-  /* SECTION BASE */
-  section {
-    position: relative;
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 3rem;
-  }
-
-  /* MANIFESTO */
-  #manifesto {
-    padding: 10rem 3rem 10rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .manifesto-text {
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    line-height: 1.85;
-    font-weight: 300;
-  }
-
-  .manifesto-text p {
-    margin-bottom: 1.8rem;
-    opacity: 1;
-    transform: none;
-  }
-
-  .manifesto-text p.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-
-
-  .manifesto-text p.accent-line {
-    color: var(--accent);
-    font-style: italic;
-    font-size: clamp(1.2rem, 2.2vw, 1.7rem);
-  }
-
-  .manifesto-text p.dim-line {
-    color: var(--text-dim);
-  }
-
-  .manifesto-signature {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--text-muted);
-    margin-top: 4rem;
-  }
-
-  /* WORKS */
-  #works {
-    padding: 6rem 0;
-  }
-
-  .works-header {
-    padding: 0 3rem;
-    margin-bottom: 5rem;
-    display: flex;
-    align-items: baseline;
-    gap: 2rem;
-  }
-
-  .works-title {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 300;
-    letter-spacing: -0.02em;
-  }
-
-  /* WORK ITEM */
-  .work-item {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 90vh;
-    border-top: 1px solid var(--text-muted);
-    opacity: 1;
-  }
-
-  .work-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .work-item.reverse { direction: rtl; }
-  .work-item.reverse > * { direction: ltr; }
-
-  .work-media {
-    position: relative;
-    overflow: hidden;
-    background: var(--surface);
-  }
-
-  .work-media iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    position: absolute;
-    inset: 0;
-  }
-
-  .work-media .work-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 1.2s var(--transition);
-  }
-
-  .work-item:hover .work-image {
-    transform: scale(1.03);
-  }
-
-  .work-info {
-    padding: 5rem 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: var(--bg2);
-  }
-
-  .work-number {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    margin-bottom: 2rem;
-  }
-
-  .work-title {
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    white-space: nowrap;
-  }
-
-  .work-year {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 2.5rem;
-  }
-
-  .work-desc {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--text-dim);
-    margin-bottom: 3rem;
-    max-width: 480px;
-  }
-
-  .work-awards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .award-tag {
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    border: 1px solid var(--text-muted);
-    color: var(--text-dim);
-    padding: 0.3rem 0.7rem;
-  }
-
-  .work-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    text-decoration: none;
-    transition: gap 0.3s;
-  }
-  .work-link:hover { gap: 1.4rem; }
-  .work-link::after { content: '→'; }
-
-  /* VIDEO TOGGLE */
-  .video-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: none;
-    border: 1px solid var(--accent-dim);
-    padding: 0.6rem 1.2rem;
-      transition: background 0.3s, color 0.3s;
-    margin-bottom: 1.5rem;
-  }
-  .video-toggle:hover {
-    background: var(--accent);
-    color: var(--bg);
-  }
-
-  .video-container {
-    display: none;
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    margin-bottom: 2rem;
-  }
-  .video-container.active { display: block; }
-  .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  /* FIELD WORK / PHOTO SECTION */
-  #fieldwork {
-    padding: 8rem 3rem;
-    background: var(--bg);
-  }
-
-  .fieldwork-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 5rem;
-    align-items: end;
-  }
-
-  .fieldwork-title {
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-
-  .fieldwork-desc {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--text-dim);
-  }
-
-  .fieldwork-pivot {
-    font-size: 1rem;
-    color: var(--text-dim);
-    margin-top: 1.5rem;
-    line-height: 1.8;
-  }
-
-  /* HORIZONTAL SCROLL STRIP */
-  .conflicts-scroll {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .conflicts-track {
-    display: flex;
-    gap: 1px;
-    cursor: ew-resize;
-    user-select: none;
-  }
-
-  .conflict-item {
-    flex: 0 0 auto;
-    position: relative;
-    background: var(--surface);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .conflict-item img {
-    width: 700px;
-    height: auto;
-    display: block;
-    transition: filter 0.6s;
-    filter: grayscale(20%);
-  }
-
-  .conflict-item:hover img {
-    filter: grayscale(0%);
-  }
-
-  .conflict-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(10,10,8,0.85) 0%, transparent 60%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 2rem;
-  }
-
-  .conflict-name {
-    font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.3rem;
-  }
-
-  .conflict-year {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-  }
-
-  /* Placeholder for conflict images */
-  .conflict-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .conflict-placeholder::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-      repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(255,255,255,0.01) 10px,
-        rgba(255,255,255,0.01) 20px
-      );
-  }
-
-  .placeholder-label {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    text-align: center;
-    padding: 1rem;
-  }
-
-  .scroll-instruction {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-top: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .scroll-instruction::before {
-    content: '←';
-    color: var(--accent);
-  }
-  .scroll-instruction::after {
-    content: '→';
-    color: var(--accent);
-  }
-
-  /* ABOUT */
-  #about {
-    padding: 10rem 3rem;
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 6rem;
-    align-items: start;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .about-portrait {
-    position: sticky;
-    top: 8rem;
-  }
-
-  .about-portrait img {
-    width: 100%;
-    max-width: 420px;
-    display: block;
-    filter: grayscale(20%) contrast(1.1);
-  }
-
-  .about-portrait-caption {
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    letter-spacing: 0.15em;
-    color: var(--text-muted);
-    margin-top: 1rem;
-    text-transform: uppercase;
-  }
-
-  .about-text h2 {
-    font-size: clamp(2rem, 3.5vw, 3.5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 3rem;
-    font-family: var(--serif);
-    color: var(--text);
-  }
-
-  .about-text h2 { font-style: normal; }
-
-  .about-body {
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: var(--text-dim);
-    margin-bottom: 4rem;
-  }
-
-  .about-body p { margin-bottom: 1.5rem; }
-
-  .about-body strong {
-    color: var(--text-dim);
-    font-weight: 300;
-  }
-
-  .credentials {
-    border-top: 1px solid var(--text-muted);
-    padding-top: 3rem;
-  }
-
-  .credential-item {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 1.5rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(74,72,64,0.3);
-    opacity: 1;
-  }
-
-  .credential-item.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .credential-year {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    padding-top: 0.15rem;
-  }
-
-  .credential-text {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    line-height: 1.5;
-  }
-
-  .credential-text strong {
-    color: var(--text);
-    font-weight: 400;
-    display: block;
-    margin-bottom: 0.2rem;
-  }
-
-  /* PRESS QUOTE */
-  .press-quote {
-    margin: 6rem 0 0;
-    padding: 4rem 3rem;
-    background: var(--surface);
-    border-left: 3px solid var(--accent);
-  }
-
-  .press-quote blockquote {
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-    font-style: italic;
-    line-height: 1.7;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-  }
-
-  .press-quote cite {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-style: normal;
-  }
-
-  /* CONTACT */
-  #contact {
-    padding: 8rem 3rem;
-    border-top: 1px solid var(--text-muted);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  .contact-title {
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-
-  .contact-title em {
-    font-style: italic;
-    color: var(--text-dim);
-  }
-
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .contact-link {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-
-  .contact-link-label {
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .contact-link-value {
-    font-size: 1.1rem;
-    color: var(--text);
-    text-decoration: none;
-    border-bottom: 1px solid var(--text-muted);
-    padding-bottom: 0.5rem;
-    transition: color 0.3s, border-color 0.3s;
-  }
-  .contact-link-value:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-
-  /* FOOTER */
-  footer {
-    padding: 3rem;
-    border-top: 1px solid rgba(74,72,64,0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-name {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .footer-copy {
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-  }
-
-  /* DIVIDER */
-  .section-divider {
-    width: 1px;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, var(--accent-dim), transparent);
-    margin: 0 auto;
-  }
-
-  /* GRAIN OVERLAY */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 128px 128px;
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 1.5rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
-    #hero { padding: 0 1.5rem 3rem; }
-    .hero-line { left: 1.5rem; }
-    .work-item { grid-template-columns: 1fr; min-height: auto; }
-    .work-item.reverse { direction: ltr; }
-    .work-media { height: 50vw; min-height: 280px; }
-    .fieldwork-header { grid-template-columns: 1fr; }
-    #about { grid-template-columns: 1fr; gap: 3rem; padding: 6rem 1.5rem; }
-    .about-portrait { position: relative; top: 0; }
-    #contact { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
-    #fieldwork { padding: 6rem 1.5rem; }
-    #manifesto { padding: 6rem 1.5rem; }
-    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
-  }
-
-  /* SKIP NAV */
-  .skip-nav {
-    position: absolute;
-    left: -9999px;
-    font-size: 0.8rem;
-  }
-  .skip-nav:focus { left: 1rem; top: 1rem; z-index: 9999; color: var(--accent); }
+:root {
+  --bg:#0a0a08; --bg2:#111110; --surface:#161614;
+  --text:#e8e4dc; --text-dim:#8a8578; --text-muted:#4a4840;
+  --accent:#c8a96e; --accent-dim:#7a6540;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --mono:'Space Mono',monospace;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);font-weight:300;overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,8,0.95) 0%,transparent 100%);pointer-events:none;}
+.nav-name{font-family:var(--serif);font-size:0.85rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);text-decoration:none;position:relative;z-index:1;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;position:relative;z-index:1;}
+.nav-links a{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--accent);}
+
+#hero{height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 3rem 4rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(139,32,32,0.08) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(200,169,110,0.05) 0%,transparent 50%);}
+.hero-line{position:absolute;top:0;left:3rem;width:1px;height:0;background:var(--accent-dim);animation:lineGrow 2s var(--ease) 0.3s forwards;}
+@keyframes lineGrow{to{height:100%;}}
+.hero-content{position:relative;z-index:2;}
+.hero-eyebrow{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+.hero-title{font-size:clamp(3.5rem,8vw,8rem);font-weight:300;line-height:0.95;letter-spacing:-0.02em;margin-bottom:2rem;}
+.hero-title em{font-style:italic;color:var(--text-dim);}
+.hero-statement{font-size:clamp(1rem,1.8vw,1.3rem);font-weight:300;font-style:italic;color:var(--text-dim);max-width:600px;line-height:1.6;border-left:1px solid var(--accent-dim);padding-left:1.5rem;}
+.scroll-hint{position:absolute;bottom:2rem;right:3rem;font-family:var(--mono);font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:1rem;}
+.scroll-hint::before{content:'';display:block;width:40px;height:1px;background:var(--text-muted);}
+
+.section-label{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:3rem;}
+.section-divider{width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--accent-dim),transparent);margin:0 auto;}
+
+#manifesto{padding:10rem 3rem;max-width:900px;margin:0 auto;}
+.manifesto-text{font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.85;font-weight:300;}
+.manifesto-text p{margin-bottom:1.8rem;}
+.manifesto-text p.accent-line{color:var(--accent);font-style:italic;font-size:clamp(1.2rem,2.2vw,1.7rem);}
+.manifesto-text p.dim-line{color:var(--text-dim);}
+.manifesto-text p.personal{color:var(--text);font-style:italic;}
+
+#works{padding:6rem 0;}
+.works-header{padding:0 3rem;margin-bottom:5rem;display:flex;align-items:baseline;gap:2rem;}
+.works-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:300;letter-spacing:-0.02em;}
+.work-item{display:grid;grid-template-columns:1fr 1fr;min-height:90vh;border-top:1px solid var(--text-muted);}
+.work-item.reverse{direction:rtl;}
+.work-item.reverse>*{direction:ltr;}
+.work-media{position:relative;overflow:hidden;background:var(--surface);}
+.work-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s var(--ease);}
+.work-item:hover .work-media img{transform:scale(1.03);}
+.work-media-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--surface);}
+.work-media-placeholder span{font-family:var(--serif);font-size:clamp(2rem,4vw,4rem);font-weight:300;font-style:italic;color:var(--text-dim);text-align:center;line-height:1.2;}
+.work-info{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;background:var(--bg2);}
+.work-number{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.2em;color:var(--accent);margin-bottom:2rem;}
+.work-title{font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1rem;font-family:var(--serif);}
+.work-year{font-family:var(--mono);font-size:0.65rem;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:2.5rem;}
+.work-desc{font-size:1rem;line-height:1.8;color:var(--text-dim);margin-bottom:3rem;max-width:480px;}
+.work-awards{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;}
+.award-tag{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;border:1px solid var(--text-muted);color:var(--text-dim);padding:0.3rem 0.7rem;}
+.work-link{display:inline-flex;align-items:center;gap:0.8rem;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);text-decoration:none;border:1px solid var(--accent-dim);padding:0.6rem 1.2rem;margin-top:0.5rem;margin-right:0.5rem;transition:background 0.3s,color 0.3s;cursor:pointer;}
+.work-link:hover{background:var(--accent);color:var(--bg);}
+
+#fieldwork{padding:8rem 3rem;}
+.fieldwork-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:5rem;align-items:end;}
+.fieldwork-title{font-size:clamp(2.5rem,5vw,5rem);font-weight:300;line-height:1;letter-spacing:-0.03em;}
+.fieldwork-desc{font-size:1rem;line-height:1.8;color:var(--text-dim);}
+.fieldwork-pivot{font-size:1rem;color:var(--text-dim);margin-top:1.5rem;line-height:1.8;}
+.conflicts-track{display:flex;gap:4px;cursor:ew-resize;overflow-x:scroll;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}
+.conflicts-track::-webkit-scrollbar{display:none;}
+.conflict-item{flex:0 0 auto;position:relative;background:var(--surface);}
+.conflict-item img{width:700px;height:auto;display:block;transition:filter 0.6s;filter:grayscale(20%);pointer-events:none;}
+.conflict-item:hover img{filter:grayscale(0%);}
+.conflict-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,10,8,0.85) 0%,transparent 60%);padding:2rem;}
+.conflict-name{font-size:1.1rem;font-weight:400;letter-spacing:0.05em;}
+.conflict-placeholder{width:700px;height:467px;background:var(--surface);display:flex;align-items:center;justify-content:center;}
+.placeholder-text{font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);text-align:center;line-height:2;}
+.scroll-instruction{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;color:var(--text-muted);text-transform:uppercase;margin-top:1.5rem;display:flex;align-items:center;gap:1rem;}
+.scroll-instruction::before{content:'&#8592;';color:var(--accent);}
+.scroll-instruction::after{content:'&#8594;';color:var(--accent);}
+
+#about{padding:10rem 3rem;display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;align-items:start;max-width:1400px;margin:0 auto;}
+.about-portrait{position:sticky;top:8rem;}
+.about-portrait img{width:100%;max-width:420px;display:block;filter:grayscale(20%) contrast(1.1);}
+.about-portrait-caption{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.15em;color:var(--text-muted);margin-top:1rem;text-transform:uppercase;}
+.about-text h2{font-size:clamp(2rem,3.5vw,3.5rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em;margin-bottom:3rem;font-family:var(--serif);color:var(--text);}
+.about-body{font-size:1.05rem;line-height:1.9;color:var(--text-dim);margin-bottom:4rem;}
+.about-body p{margin-bottom:1.5rem;}
+.about-body a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-dim);}
+.credentials{border-top:1px solid var(--text-muted);padding-top:3rem;}
+.credential-item{display:grid;grid-template-columns:120px 1fr;gap:1.5rem;padding:1rem 0;border-bottom:1px solid rgba(74,72,64,0.3);}
+.credential-year{font-family:var(--mono);font-size:0.6rem;color:var(--accent);letter-spacing:0.1em;padding-top:0.15rem;}
+.credential-text{font-size:0.9rem;color:var(--text-dim);line-height:1.5;}
+.credential-text strong{color:var(--text);font-weight:400;display:block;margin-bottom:0.2rem;}
+
+#contact{padding:8rem 3rem;border-top:1px solid var(--text-muted);display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1400px;margin:0 auto;}
+.contact-title{font-size:clamp(2.5rem,5vw,5rem);font-weight:300;line-height:1;letter-spacing:-0.03em;}
+.contact-title em{font-style:italic;color:var(--text-dim);}
+.contact-links{display:flex;flex-direction:column;gap:1.5rem;}
+.contact-link{display:flex;flex-direction:column;gap:0.3rem;}
+.contact-link-label{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);}
+.contact-link-value{font-size:1.1rem;color:var(--text);text-decoration:none;border-bottom:1px solid var(--text-muted);padding-bottom:0.5rem;transition:color 0.3s,border-color 0.3s;}
+a.contact-link-value:hover{color:var(--accent);border-color:var(--accent);}
+
+footer{padding:3rem;border-top:1px solid rgba(74,72,64,0.2);display:flex;justify-content:space-between;align-items:center;}
+.footer-name{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);}
+.footer-copy{font-family:var(--mono);font-size:0.55rem;color:var(--text-muted);letter-spacing:0.1em;}
+
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:128px 128px;}
+
+@media(max-width:900px){
+  nav{padding:1.5rem;}
+  .nav-links{gap:1.5rem;}
+  #hero{padding:0 1.5rem 3rem;}
+  .hero-line{left:1.5rem;}
+  .work-item{grid-template-columns:1fr;min-height:auto;}
+  .work-item.reverse{direction:ltr;}
+  .work-media{height:50vw;min-height:280px;}
+  .fieldwork-header{grid-template-columns:1fr;}
+  #about{grid-template-columns:1fr;gap:3rem;padding:6rem 1.5rem;}
+  .about-portrait{position:relative;top:0;}
+  #contact{grid-template-columns:1fr;padding:5rem 1.5rem;}
+  #fieldwork{padding:6rem 1.5rem;}
+  #manifesto{padding:6rem 1.5rem;}
+  footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}
+}
 </style>
 </head>
-
 <body>
 
-<a class="skip-nav" href="#manifesto">Skip to content</a>
-<!-- NAV -->
 <nav>
   <a class="nav-name" href="#hero">Karim Ben Khelifa</a>
   <ul class="nav-links">
@@ -853,94 +148,68 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-line"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Artist · Berlin</p>
+    <p class="hero-eyebrow">Artist &middot; Berlin</p>
     <h1 class="hero-title">Karim<br><em>Ben Khelifa</em></h1>
-    <p class="hero-statement">I don't show you war.<br>I make you feel what you have allowed yourself not to feel.</p>
+    <p class="hero-statement">I don&#8217;t show you war.<br>I make you feel what you have allowed yourself not to feel.</p>
   </div>
   <p class="scroll-hint">Scroll</p>
 </section>
 
-<!-- MANIFESTO -->
 <section id="manifesto">
   <p class="section-label">Manifesto</p>
   <div class="manifesto-text">
     <p class="accent-line">There is something obscene in the way we consume war now.</p>
-    <p class="dim-line">It arrives not with the weight of history or the stench of blood,<br>
-    but as a fleeting image on a screen.</p>
-    <p class="dim-line">Compressed between an influencer's breakfast<br>
-    and an ad for the latest electric car.</p>
-    <p>The crying child in a cratered street.<br>
-    The severed limb in the rubble.<br>
-    The dust cloud hanging like a ghost.</p>
-    <p>All of it is real.<br>
-    The camera does not lie.<br>
-    But the camera cannot speak.</p>
-    <p class="dim-line">What it captures is stripped of its context.<br>
-    Violence, without memory.<br>
-    Suffering, without history.</p>
+    <p class="dim-line">It arrives not with the weight of history or the stench of blood,<br>but as a fleeting image on a screen.</p>
+    <p class="dim-line">Compressed between an influencer&#8217;s breakfast<br>and an ad for the latest electric car.</p>
+    <p>The crying child in a cratered street.<br>The severed limb in the rubble.<br>The dust cloud hanging like a ghost.</p>
+    <p>All of it is real.<br>The camera does not lie.<br>But the camera cannot speak.</p>
+    <p class="dim-line">What it captures is stripped of its context.<br>Violence, without memory.<br>Suffering, without history.</p>
     <p class="accent-line">The viewer scrolls on.</p>
-    <p class="dim-line">The missile strike dissolves into a meme.<br>
-    The tragedy fades behind a tap.</p>
-    <p>We are living through a collapse of moral proportion.<br>
-    War and comedy. Atrocity and lifestyle tips.<br>
-    Carnage and celebrity news.</p>
-    <p class="dim-line">All of it delivered in the same feed.<br>
-    All of it treated the same.</p>
-    <p>Even the legacy media now trades in euphemism.<br>
-    <em>"Surgical intervention."<br>
-    "Kinetic action."<br>
-    "Targeted neutralization."</em></p>
-    <p class="dim-line">Words chosen not to disturb.<br>
-    Not to offend. Not to feel.</p>
-    <p>This detachment is not neutral.<br>
-    It shapes opinion. It shields us from guilt.<br>
-    It makes war seem manageable.</p>
-    <p class="accent-line">A war that is not felt is a war that can be ignored.</p>
-    <p class="dim-line">The tragedy is real for those who endure it.<br>
-    But unreal for those who consume it.<br>
-    Filtered. Softened. Suspended between spectacle and fact.</p>
-    <p>In my work, I try to tear through that veil.<br>
-    Not to show war, but to make it present.<br>
-    Not to trigger emotion, but to restore agency.</p>
-    <p>Because war has many dimensions.<br>
-    And unless we find ways to feel what we cannot see,<br>
-    we become numb to the horrors,<br>
-    untouched by the very catastrophes we allow to continue.</p>
+    <p class="dim-line">The missile strike dissolves into a meme.<br>The tragedy fades behind a tap.</p>
+    <p>We are living through a collapse of moral proportion.<br>War and comedy. Atrocity and lifestyle tips.<br>Carnage and celebrity news.</p>
+    <p class="dim-line">All of it delivered in the same feed.<br>All of it treated the same.</p>
+    <p>Even the legacy media now trades in euphemism.<br><em>&#8220;Surgical intervention.&#8221;<br>&#8220;Kinetic action.&#8221;<br>&#8220;Targeted neutralization.&#8221;</em></p>
+    <p class="dim-line">Words chosen not to disturb.<br>Not to offend. Not to feel.</p>
+    <p>This detachment is not neutral.<br>It shapes opinion. It shields us from guilt.<br>It makes war seem manageable.</p>
+    <p class="accent-line">And a war that is not felt is a war we can ignore.</p>
+    <p class="dim-line">The tragedy is real for those who endure it.<br>But unreal for those who consume it.<br>Filtered. Softened. Suspended between spectacle and fact.</p>
+    <p>Yet anyone who has stood where the camera stands<br>knows how violently the screen is void of meaning.</p>
+    <p class="personal">As a conflict photographer, I have been there.<br>I have heard the aftermath of shelling at dawn.<br>It still vibrates in my ribs.<br>I smelled the bitterness of torn steel.<br>Of melted plastic. Of burning flesh. Of death.</p>
+    <p class="personal">I have seen a father kiss a scorched plank of wood.<br>That once was the door to his child&#8217;s room.</p>
+    <p>In my work, I try to tear through that veil.<br>Not to show war, but to make it present.<br>Not to trigger emotion, but to restore agency.</p>
+    <p>Because war has many dimensions.<br>And unless we find ways to feel what we cannot see,<br>we become numb to the horrors,<br>untouched by the very catastrophes we allow to continue.</p>
   </div>
-  
 </section>
 
 <div class="section-divider"></div>
 
-<!-- WORKS -->
 <section id="works">
   <div class="works-header">
     <p class="section-label">Works</p>
     <h2 class="works-title">Immersive<br><em>practice</em></h2>
   </div>
 
-  <!-- IN 36,000 WAYS -->
+  <!-- 001 IN 36,000 WAYS -->
   <div class="work-item" id="work-1">
-    <div class="work-media" style="background:var(--surface);">
-      <img class="work-image" src="trio.jpg" alt="In 36,000 Ways installation" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+    <div class="work-media">
+      <img src="trio.jpg" alt="In 36,000 Ways installation" loading="lazy">
     </div>
     <div class="work-info">
       <p class="work-number">001</p>
       <h3 class="work-title">In 36,000 Ways</h3>
-      <p class="work-year">2023 — Ongoing</p>
+      <p class="work-year">2023 &#8212; Ongoing</p>
       <p class="work-desc">A fragmentation weapon produces 36,000 shards upon detonation. Each one travels at the speed of sound. Each one is designed to kill.<br><br>
       Visitors are invited to hold a single piece of shrapnel collected from the front lines of southern Ukraine. They stand inside a suspended cloud of 36,000 fragments, frozen in the air. Spatial sound and live biofeedback compose a soundscape from their own physiological response.<br><br>
       The work is in active development. The current version is a single-visitor sensory installation. A full-scale, multi-visitor version is in production.</p>
       <div class="work-awards">
-        <span class="award-tag">Gallery Anahita Sadighi — Berlin 2024</span>
-        <span class="award-tag">Max Planck Institute, Center for Humans and Machines — 2024</span>
-        <span class="award-tag">IDFA DocLab — Amsterdam 2025</span>
-        <span class="award-tag">TecArt — Rotterdam 2026</span>
+        <span class="award-tag">Gallery Anahita Sadighi &#8212; Berlin 2024</span>
+        <span class="award-tag">Max Planck Institute, Center for Humans and Machines &#8212; 2024</span>
+        <span class="award-tag">IDFA DocLab &#8212; Amsterdam 2025</span>
+        <span class="award-tag">TecArt &#8212; Rotterdam 2026</span>
         <span class="award-tag">Sensory Installation</span>
         <span class="award-tag">Live Biofeedback</span>
         <span class="award-tag">Soundscape</span>
@@ -948,223 +217,175 @@
     </div>
   </div>
 
-  <!-- THE ENEMY -->
+  <!-- 002 THE ENEMY -->
   <div class="work-item reverse" id="work-2">
-    <div class="work-media" style="background:#0d0d0b; display:flex; align-items:center; justify-content:center;">
-      <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:3rem;">
-        <div style="font-family:var(--serif); font-size:clamp(2rem,4vw,4rem); font-weight:300; font-style:italic; color:var(--text-dim); text-align:center; line-height:1.2;">The<br>Enemy</div>
+    <div class="work-media">
+      <div class="work-media-placeholder">
+        <span>The<br>Enemy</span>
       </div>
     </div>
     <div class="work-info">
       <p class="work-number">002</p>
       <h3 class="work-title">The Enemy</h3>
-      <p class="work-year">2013 — Ongoing</p>
+      <p class="work-year">2013 &#8212; Ongoing</p>
       <p class="work-desc">The first multi-user, location-based VR experience ever deployed publicly. The installation places audiences face to face with combatants from opposite sides of three long-standing conflicts: Israel/Palestine, the Democratic Republic of Congo, El Salvador.<br><br>
-      Developed with Professor Fox Harrell at MIT, the work uses AI-driven interaction to track each visitor's responses in real time. Not a film. Not a game. A confrontation engineered to last beyond the headset.</p>
+      Developed with Professor Fox Harrell at MIT, the work uses AI-driven interaction to track each visitor&#8217;s responses in real time. Not a film. Not a game. A confrontation engineered to last beyond the headset.</p>
       <div class="work-awards">
-        <span class="award-tag">Rose d'Or — Berlin 2017</span>
-        <span class="award-tag">Numix Grand Prix — Montreal 2018</span>
-        <span class="award-tag">World VR Forum — 2018</span>
-        <span class="award-tag">Sundance Fellowship — 2015</span>
-        <span class="award-tag">MIT Museum — Cambridge 2017</span>
-        <span class="award-tag">Institut du Monde Arabe — Paris 2017</span>
+        <span class="award-tag">Rose d&#8217;Or &#8212; Berlin 2017</span>
+        <span class="award-tag">Numix Grand Prix &#8212; Montreal 2018</span>
+        <span class="award-tag">World VR Forum &#8212; 2018</span>
+        <span class="award-tag">Sundance Fellowship &#8212; 2015</span>
+        <span class="award-tag">MIT Museum &#8212; Cambridge 2017</span>
+        <span class="award-tag">Institut du Monde Arabe &#8212; Paris 2017</span>
       </div>
-      <a href="https://www.youtube.com/watch?v=X4CK99EI3Ww" target="_blank" rel="noopener" class="video-toggle">▶ Watch trailer</a>
+      <a href="https://www.youtube.com/watch?v=X4CK99EI3Ww" target="_blank" rel="noopener" class="work-link">&#9654; Watch trailer</a>
     </div>
   </div>
 
-  <!-- SEVEN GRAMS -->
+  <!-- 003 SEVEN GRAMS -->
   <div class="work-item" id="work-3">
-    <div class="work-media" style="background:#0d0d0b; display:flex; align-items:center; justify-content:center;">
-      <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:3rem;">
-        <div style="font-family:var(--serif); font-size:clamp(2rem,4vw,4rem); font-weight:300; font-style:italic; color:var(--text-dim); text-align:center; line-height:1.2;">Seven<br>Grams</div>
+    <div class="work-media">
+      <div class="work-media-placeholder">
+        <span>Seven<br>Grams</span>
       </div>
     </div>
     <div class="work-info">
       <p class="work-number">003</p>
       <h3 class="work-title">Seven Grams</h3>
-      <p class="work-year">2018 — 2022</p>
+      <p class="work-year">2018 &#8212; 2022</p>
       <p class="work-desc">An augmented reality experience that turns your smartphone into the instrument of its own indictment. Seven grams of rare earth minerals. Every phone. Every hand.<br><br>
       The work reveals the human cost of mineral extraction in the Democratic Republic of Congo, made visible through the very object that depends on it.<br><br>
       Seven Grams is a free app available on iOS and Android.</p>
       <div class="work-awards">
-        <span class="award-tag">Sundance Film Festival — 2022</span>
-        <span class="award-tag">Crystal Owl Award — Brussels 2022</span>
-        <span class="award-tag">FIPADOC Best Digital Storytelling — 2022</span>
-        <span class="award-tag">Prix Europa — Berlin 2022</span>
+        <span class="award-tag">Sundance Film Festival &#8212; 2022</span>
+        <span class="award-tag">Crystal Owl Award &#8212; Brussels 2022</span>
+        <span class="award-tag">FIPADOC Best Digital Storytelling &#8212; 2022</span>
+        <span class="award-tag">Prix Europa &#8212; Berlin 2022</span>
       </div>
-      <a href="https://sevengrams.org/home/" target="_blank" rel="noopener" class="video-toggle">↗ Get the free app</a>
-      <a href="https://www.youtube.com/watch?v=Gjl0TI6kXUQ" target="_blank" rel="noopener" class="video-toggle" style="margin-left:1rem;">▶ Watch trailer</a>
+      <a href="https://sevengrams.org/home/" target="_blank" rel="noopener" class="work-link">&#8599; Get the free app</a>
+      <a href="https://www.youtube.com/watch?v=Gjl0TI6kXUQ" target="_blank" rel="noopener" class="work-link">&#9654; Watch trailer</a>
     </div>
   </div>
-
 </section>
 
-<!-- FIELD WORK -->
 <section id="fieldwork">
   <div class="fieldwork-header">
     <div>
-      <p class="section-label">1998 — 2013</p>
+      <p class="section-label">1998 &#8212; 2013</p>
       <h2 class="fieldwork-title">From<br>the<br><em>Field</em></h2>
     </div>
     <div>
-      <p class="fieldwork-desc">For fifteen years, working for Time, Vanity Fair, Le Monde, Le Monde 2, Stern and GEO, I photographed conflict across more than 90 countries. Kosovo. Gaza. Afghanistan. Somalia. The West Bank. Kashmir. Yemen.<br><br>
-      I was there. I saw it. I documented it with precision and care.</p>
-      <p class="fieldwork-pivot">Then I stopped. Because I became convinced that images of conflict don't change the people who see them, nor the lives of the people I photographed.</p>
+      <p class="fieldwork-desc">For almost two decades, working for Time, Vanity Fair, Le Monde, Stern and GEO, I photographed conflict across more than 90 countries. Kosovo. Gaza. Afghanistan. Somalia. The West Bank. Kashmir. Yemen.</p>
+      <p class="fieldwork-pivot">Then I stopped. Because I became convinced that images of conflict don&#8217;t change the people who see them, nor the lives of the people I photographed.</p>
     </div>
   </div>
-
-  <div class="conflicts-scroll">
-    <div class="conflicts-track" id="conflictsTrack">
-
-      <div class="conflict-item">
-        <img src="1.jpg" alt="Field work 01" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">01</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="2.jpg" alt="Field work 02" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">02</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="3.jpg" alt="Field work 03" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">03</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="4.jpg" alt="Field work 04" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">04</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="5.jpg" alt="Field work 05" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">05</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="6.jpg" alt="Field work 06" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">06</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="7.jpg" alt="Field work 07" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">07</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="8.jpg" alt="Field work 08" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">08</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="9.jpg" alt="Field work 09" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">09</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="10.jpg" alt="Field work 10" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">10</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="11.jpg" alt="Field work 11" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">11</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="12.jpg" alt="Field work 12" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">12</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="13.jpg" alt="Field work 13" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">13</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="14.jpg" alt="Field work 14" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">14</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="15.jpg" alt="Field work 15" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">15</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="16.jpg" alt="Field work 16" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">16</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="17.jpg" alt="Field work 17" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">17</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="18.jpg" alt="Field work 18" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">18</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="19.jpg" alt="Field work 19" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">19</p>
-        </div>
-      </div>
-
-      <div class="conflict-item">
-        <img src="20.jpg" alt="Field work 20" loading="lazy" onerror="this.parentElement.style.background='var(--surface)'; this.style.display='none'">
-        <div class="conflict-overlay">
-          <p class="conflict-name">20</p>
-        </div>
-      </div>
+  <div class="conflicts-track" id="conflictsTrack">
+    <div class="conflict-item">
+      <img src="1.jpg" alt="Field work 01" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 01</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">01</p></div>
     </div>
-    <p class="scroll-instruction">Drag to explore</p>
+    <div class="conflict-item">
+      <img src="2.jpg" alt="Field work 02" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 02</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">02</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="3.jpg" alt="Field work 03" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 03</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">03</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="4.jpg" alt="Field work 04" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 04</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">04</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="5.jpg" alt="Field work 05" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 05</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">05</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="6.jpg" alt="Field work 06" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 06</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">06</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="7.jpg" alt="Field work 07" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 07</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">07</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="8.jpg" alt="Field work 08" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 08</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">08</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="9.jpg" alt="Field work 09" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 09</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">09</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="10.jpg" alt="Field work 10" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 10</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">10</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="11.jpg" alt="Field work 11" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 11</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">11</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="12.jpg" alt="Field work 12" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 12</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">12</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="13.jpg" alt="Field work 13" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 13</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">13</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="14.jpg" alt="Field work 14" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 14</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">14</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="15.jpg" alt="Field work 15" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 15</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">15</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="16.jpg" alt="Field work 16" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 16</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">16</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="17.jpg" alt="Field work 17" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 17</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">17</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="18.jpg" alt="Field work 18" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 18</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">18</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="19.jpg" alt="Field work 19" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 19</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">19</p></div>
+    </div>
+    <div class="conflict-item">
+      <img src="20.jpg" alt="Field work 20" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="conflict-placeholder" style="display:none;"><p class="placeholder-text">Photo 20</p></div>
+      <div class="conflict-overlay"><p class="conflict-name">20</p></div>
+    </div>
   </div>
-
+  <p class="scroll-instruction">Drag to explore</p>
 </section>
 
 <div class="section-divider"></div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="about-portrait">
     <img src="IMG_5341.jpg" alt="Karim Ben Khelifa">
@@ -1175,54 +396,35 @@
     <h2>Karim Ben Khelifa</h2>
     <div class="about-body">
       <p>Karim Ben Khelifa is a Belgian-Tunisian artist whose practice engineers confrontation with armed conflict through a range of new media such as VR, AR, spatial sound, kinetic sculpture, and sensory collective installations.</p>
-      <p>Drawing on almost two decades as a frontline photojournalist, he abandoned documentation when he became convinced that war imagery doesn't change the people who consume it, nor the lives of the people he photographed. The question that followed still drives everything he makes: if documentation fails, what doesn't?</p>
+      <p>Drawing on almost two decades as a frontline photojournalist, he abandoned documentation when he became convinced that war imagery doesn&#8217;t change the people who consume it, nor the lives of the people he photographed. The question that followed still drives everything he makes: if documentation fails, what doesn&#8217;t?</p>
       <p>His answer has been consistent across three major works: stop representing war. Start engineering the conditions under which a person cannot avoid reckoning with it on their own terms.</p>
-      <p>He is the founder of <a href="https://www.ateliernonfiction.com" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-dim);">Atelier Non Fiction</a>, a Berlin-based boutique production company that creates projects that are hard to categorize but easy to remember.</p>
+      <p>He is the founder of <a href="https://www.ateliernonfiction.com" target="_blank" rel="noopener">Atelier Non Fiction</a>, a Berlin-based boutique production company that creates projects that are hard to categorize but easy to remember.</p>
     </div>
-
     <div class="credentials">
       <div class="credential-item">
         <span class="credential-year">2024</span>
-        <div class="credential-text">
-          <strong>Artist in Residence</strong>
-          Max Planck Institute, Center for Humans and Machines, Berlin
-        </div>
+        <div class="credential-text"><strong>Artist in Residence</strong>Max Planck Institute, Center for Humans and Machines, Berlin</div>
       </div>
       <div class="credential-item">
-        <span class="credential-year">2018 — Now</span>
-        <div class="credential-text">
-          <strong>Advisory Board</strong>
-          MIT Center for Advanced Virtuality
-        </div>
+        <span class="credential-year">2018 &#8212; Now</span>
+        <div class="credential-text"><strong>Advisory Board</strong>MIT Center for Advanced Virtuality</div>
       </div>
       <div class="credential-item">
-        <span class="credential-year">2015 — 2017</span>
-        <div class="credential-text">
-          <strong>Visiting Artist</strong>
-          MIT Center for Art, Science and Technology (CAST)
-        </div>
+        <span class="credential-year">2015 &#8212; 2017</span>
+        <div class="credential-text"><strong>Visiting Artist</strong>MIT Center for Art, Science and Technology (CAST)</div>
       </div>
       <div class="credential-item">
-        <span class="credential-year">2013 — 2015</span>
-        <div class="credential-text">
-          <strong>Artist in Residence</strong>
-          MIT Open Documentary Lab
-        </div>
+        <span class="credential-year">2013 &#8212; 2015</span>
+        <div class="credential-text"><strong>Artist in Residence</strong>MIT Open Documentary Lab</div>
       </div>
       <div class="credential-item">
-        <span class="credential-year">2012 — 2013</span>
-        <div class="credential-text">
-          <strong>Nieman Fellow</strong>
-          Harvard University
-        </div>
+        <span class="credential-year">2012 &#8212; 2013</span>
+        <div class="credential-text"><strong>Nieman Fellow</strong>Harvard University</div>
       </div>
     </div>
-
-      </div>
+  </div>
 </section>
 
-
-<!-- CONTACT -->
 <section id="contact">
   <div>
     <p class="section-label">Contact</p>
@@ -1240,75 +442,62 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <span class="footer-name">Karim Ben Khelifa</span>
-  <span class="footer-copy">© 2026 · All rights reserved</span>
+  <span class="footer-copy">&#169; 2026 &#183; All rights reserved</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Standard cursor used
-
-// SCROLL REVEAL
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, entry.target.dataset.delay || 0);
-    }
-  });
-}, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
-
-// Elements visible by default, subtle fade on scroll for non-critical elements
-
-// VIDEO TOGGLE
-
-
-// HORIZONTAL DRAG SCROLL
+<script>
+// HORIZONTAL SCROLL - wheel and drag
 const track = document.getElementById('conflictsTrack');
 
-// Scroll wheel converts vertical scroll to horizontal
-track.addEventListener('wheel', e => {
+track.addEventListener('wheel', function(e) {
   e.preventDefault();
   track.scrollLeft += e.deltaY + e.deltaX;
 }, { passive: false });
 
-// Drag to scroll
-let isDown = false, startX, scrollLeft;
-track.addEventListener('mousedown', e => {
-  isDown = true;
+let isDragging = false, dragStartX = 0, dragScrollLeft = 0;
+track.addEventListener('mousedown', function(e) {
+  isDragging = true;
+  dragStartX = e.pageX - track.offsetLeft;
+  dragScrollLeft = track.scrollLeft;
   track.style.cursor = 'grabbing';
-  startX = e.pageX - track.offsetLeft;
-  scrollLeft = track.scrollLeft;
 });
-document.addEventListener('mouseup', () => { isDown = false; if(track) track.style.cursor = 'ew-resize'; });
-track.addEventListener('mousemove', e => {
-  if (!isDown) return;
+document.addEventListener('mouseup', function() {
+  isDragging = false;
+  track.style.cursor = 'ew-resize';
+});
+track.addEventListener('mousemove', function(e) {
+  if (!isDragging) return;
   e.preventDefault();
   const x = e.pageX - track.offsetLeft;
-  track.scrollLeft = scrollLeft - (x - startX) * 1.5;
+  track.scrollLeft = dragScrollLeft - (x - dragStartX) * 1.5;
 });
 
-// Touch scroll
-let touchStartX, touchScrollLeft;
-track.addEventListener('touchstart', e => {
+// Touch
+let touchStartX = 0, touchScrollLeft = 0;
+track.addEventListener('touchstart', function(e) {
   touchStartX = e.touches[0].pageX;
   touchScrollLeft = track.scrollLeft;
 }, { passive: true });
-track.addEventListener('touchmove', e => {
+track.addEventListener('touchmove', function(e) {
   const x = e.touches[0].pageX;
   track.scrollLeft = touchScrollLeft - (x - touchStartX) * 1.5;
 }, { passive: true });
 
-// Make track scrollable
-track.style.overflowX = 'scroll';
-track.style.scrollbarWidth = 'none';
-track.style.msOverflowStyle = 'none';
-
-// Nav active state
+// NAV active state
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', function() {
   let current = '';
- 
+  sections.forEach(function(s) {
+    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+  });
+  navLinks.forEach(function(a) {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+  });
+}, { passive: true });
+</script>
+
+</body>
+</html>

@@ -33,7 +33,7 @@
   "@type": "Person",
   "name": "Karim Ben Khelifa",
   "url": "https://karimbenkhelifa.com",
-  "image": "https://karimbenkhelifa.com/IMG_5341.jpg",
+  "image": "https://karimbenkhelifa.com/IMG_5341-MediumB.jpg",
   "jobTitle": "Artist",
   "description": "Belgian-Tunisian artist whose practice critically explores how war is consumed, remembered, and carried inside us through VR, AR, spatial sound, kinetic sculpture, and sensory collective installations.",
   "nationality": ["Belgian", "Tunisian"],
@@ -89,25 +89,57 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to b
 .nav-name{font-family:var(--serif);font-size:0.85rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);text-decoration:none;position:relative;z-index:1;opacity:0;transition:opacity 0.6s ease;}
 .nav-name.visible{opacity:1;}
 .nav-links{display:flex;gap:2.5rem;list-style:none;position:relative;z-index:1;}
-.nav-links a{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color 0.3s;}
+.nav-links a{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#d0cec8;text-decoration:none;transition:color 0.3s;}
 .nav-links a:hover{color:var(--accent);}
 
-#hero{height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 3rem 4rem;position:relative;overflow:hidden;}
+#hero{height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 3rem 4rem 6rem;position:relative;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(139,32,32,0.08) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(200,169,110,0.05) 0%,transparent 50%);}
 .hero-line{position:absolute;top:0;left:3rem;width:1px;height:0;background:var(--accent-dim);animation:lineGrow 2s var(--ease) 0.3s forwards;}
 @keyframes lineGrow{to{height:100%;}}
 .hero-content{position:relative;z-index:2;}
-.hero-eyebrow{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+.hero-left{}
+.hero-eyebrow{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:2.5rem;}
 .hero-title{font-size:clamp(3.5rem,8vw,8rem);font-weight:300;line-height:0.95;letter-spacing:-0.02em;margin-bottom:2rem;}
 .hero-title em{font-style:italic;color:var(--text-dim);}
 .hero-statement{font-size:clamp(1rem,1.8vw,1.3rem);font-weight:300;font-style:italic;color:var(--text-dim);max-width:600px;line-height:1.6;border-left:1px solid var(--accent-dim);padding-left:1.5rem;}
+.hero-right{display:flex;flex-direction:column;align-items:center;gap:1.5rem;padding-bottom:0.3rem;flex-shrink:0;}
+.hero-portrait{width:210px;height:210px;object-fit:cover;object-position:center top;filter:grayscale(20%) contrast(1.1);display:block;}
+.hero-manifesto-btns{display:flex;flex-direction:row;gap:1rem;margin-top:2.5rem;}
+.manifesto-btn{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);border:1px solid var(--text-muted);padding:0.7rem 1.4rem;cursor:pointer;background:transparent;display:flex;align-items:center;gap:0.7rem;transition:color 0.3s,border-color 0.3s;}
+.manifesto-btn:hover{color:var(--accent);border-color:var(--accent);}
+.manifesto-btn.active{color:var(--accent);border-color:var(--accent);}
+.manifesto-btn-icon{font-size:0.7rem;}
+.manifesto-btn-label{}
+
+/* MANIFESTO CAROUSEL */
+.manifesto-carousel{display:none;background:var(--bg2);border-top:1px solid var(--accent-dim);border-bottom:1px solid var(--text-muted);}
+.manifesto-carousel.open{display:block;}
+.manifesto-carousel-header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 3rem 0;}
+.manifesto-carousel-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);}
+.manifesto-carousel-close{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);background:transparent;border:none;cursor:pointer;transition:color 0.3s;}
+.manifesto-carousel-close:hover{color:var(--accent);}
+.manifesto-track-wrap{overflow-x:scroll;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;cursor:ew-resize;padding:3rem 0 3rem 3rem;}
+.manifesto-track-wrap::-webkit-scrollbar{display:none;}
+.manifesto-track{display:flex;gap:0;align-items:stretch;}
+.manifesto-slide{flex:0 0 420px;padding:0 4rem 0 0;display:flex;align-items:center;border-right:1px solid var(--text-muted);margin-right:4rem;}
+.manifesto-slide:last-child{border-right:none;flex:0 0 200px;}
+.manifesto-slide p{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.4rem);font-weight:300;line-height:1.8;color:var(--text-dim);}
+.manifesto-slide p em{font-style:italic;}
+.accent-slide p{color:var(--accent);font-style:italic;font-size:clamp(1.3rem,2.2vw,1.8rem)!important;}
+.personal-slide p{color:var(--text-dim);font-style:italic;}
+.manifesto-end-slide{flex:0 0 120px!important;justify-content:center;}
+.manifesto-end-slide p{color:var(--accent);font-size:2rem!important;line-height:1;}
+.manifesto-scroll-hint{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.15em;color:var(--text-muted);text-transform:uppercase;padding:0 3rem 1.5rem;text-align:center;}
+
+.close-manifesto{display:none;}
+.hero-text-manifesto{display:none;}
 .scroll-hint{position:absolute;bottom:2rem;right:3rem;font-family:var(--mono);font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:1rem;}
 .scroll-hint::before{content:'';display:block;width:40px;height:1px;background:var(--text-muted);}
 
 .section-label{font-family:var(--mono);font-size:0.8rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:3rem;}
 
 
-#manifesto{padding:10rem 3rem;max-width:900px;margin:0 auto;}
+#manifesto{display:none;}
 .manifesto-text{font-size:clamp(1.25rem,2.2vw,1.65rem);line-height:1.9;font-weight:300;}
 .manifesto-text p{margin-bottom:1.8rem;}
 .manifesto-text p.accent-line{color:var(--accent);font-style:italic;font-size:clamp(1.2rem,2.2vw,1.7rem);}
@@ -188,7 +220,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
 
   nav{padding:1.5rem;}
   .nav-links{gap:1.5rem;}
-  #hero{padding:0 1.5rem 3rem;}
+  #hero{padding:0 1.5rem 3rem 3.5rem;}
   .hero-line{left:1.5rem;}
   .work-item{grid-template-columns:1fr;min-height:auto;}
   .work-item.reverse{direction:ltr;}
@@ -219,12 +251,60 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
   <div class="hero-bg"></div>
   <div class="hero-line"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Artist &middot; Berlin</p>
-    <h1 class="hero-title">Karim<br><em>Ben Khelifa</em></h1>
-    <p class="hero-statement">The work doesn&#8217;t show you war.<br>It makes you feel what you have chosen not to feel.</p>
+    <div class="hero-left">
+      <p class="hero-eyebrow">Artist &middot; Berlin</p>
+      <h1 class="hero-title">Karim<br><em>Ben Khelifa</em></h1>
+      <p class="hero-statement">The work doesn&#8217;t show you war.<br>It makes you feel what you have chosen not to feel.</p>
+      <div class="hero-manifesto-btns">
+        <button class="manifesto-btn" id="audioManifestoBtn" onclick="toggleAudio()">
+          <span class="manifesto-btn-icon">&#9654;</span>
+          <span class="manifesto-btn-label">Listen to the manifesto</span>
+        </button>
+        <button class="manifesto-btn" id="textManifestoBtn" onclick="toggleTextManifesto()">
+          <span class="manifesto-btn-icon">&#8594;</span>
+          <span class="manifesto-btn-label">Read the manifesto</span>
+        </button>
+      </div>
+    </div>
   </div>
-  <p class="scroll-hint">Scroll</p>
+  <audio id="manifestoAudio" src="Opening_IDFA.mp3" preload="none"></audio>
+  <p class="scroll-hint" id="scrollHint">Scroll</p>
 </section>
+
+<!-- MANIFESTO TEXT CAROUSEL — appears below hero on click -->
+<div id="manifestoCarousel" class="manifesto-carousel">
+  <div class="manifesto-carousel-header">
+    <span class="manifesto-carousel-label">Manifesto</span>
+    <button class="manifesto-carousel-close" onclick="toggleTextManifesto()">&#215; Close</button>
+  </div>
+  <div class="manifesto-track-wrap" id="manifestoTrack">
+    <div class="manifesto-track">
+      <div class="manifesto-slide"><p>There is something obscene in the way we consume war now.</p></div>
+      <div class="manifesto-slide"><p>It arrives not with the weight of history or the stench of blood,<br>but as a fleeting image on a screen.</p></div>
+      <div class="manifesto-slide"><p>Compressed between an influencer&#8217;s breakfast<br>and an ad for the latest electric car.</p></div>
+      <div class="manifesto-slide"><p>The crying child in a cratered street.<br>The severed limb in the rubble.<br>The dust cloud hanging like a ghost.</p></div>
+      <div class="manifesto-slide"><p>All of it is real.<br>The camera does not lie.<br>But the camera cannot speak.</p></div>
+      <div class="manifesto-slide"><p>What it captures is stripped of its context.<br>Violence, without memory.<br>Suffering, without history.</p></div>
+      <div class="manifesto-slide accent-slide"><p>The viewer scrolls on.</p></div>
+      <div class="manifesto-slide"><p>The missile strike dissolves into a meme.<br>The tragedy fades behind a tap.</p></div>
+      <div class="manifesto-slide"><p>We are living through a collapse of moral proportion.<br>War and comedy. Atrocity and lifestyle tips.<br>Carnage and celebrity news.</p></div>
+      <div class="manifesto-slide"><p>All of it delivered in the same feed.<br>All of it treated the same.</p></div>
+      <div class="manifesto-slide"><p>Even the legacy media now trades in euphemism.<br><em>&#8220;Surgical intervention.&#8221;<br>&#8220;Kinetic action.&#8221;<br>&#8220;Targeted neutralization.&#8221;</em></p></div>
+      <div class="manifesto-slide"><p>Words chosen not to disturb.<br>Not to offend. Not to feel.</p></div>
+      <div class="manifesto-slide"><p>This detachment is not neutral.<br>It shapes opinion. It shields us from guilt.<br>It makes war seem manageable.</p></div>
+      <div class="manifesto-slide accent-slide"><p>And a war that is not felt<br>is a war we can ignore.</p></div>
+      <div class="manifesto-slide"><p>The tragedy is real for those who endure it.<br>But unreal for those who consume it.<br>Filtered. Softened. Suspended between spectacle and fact.</p></div>
+      <div class="manifesto-slide"><p>Yet anyone who has stood where the camera stands<br>knows how violently the screen is void of meaning.</p></div>
+      <div class="manifesto-slide personal-slide"><p>As a conflict photographer, I have been there.<br>I have heard the aftermath of shelling at dawn.<br>It still vibrates in my ribs.</p></div>
+      <div class="manifesto-slide personal-slide"><p>I smelled the bitterness of torn steel.<br>Of melted plastic. Of burning flesh.</p></div>
+      <div class="manifesto-slide personal-slide"><p>I have seen a father kiss a scorched plank of wood.<br>That once was the door to his child&#8217;s room.</p></div>
+      <div class="manifesto-slide"><p>In my work, I try to tear through that veil.<br>Not to show war, but to make it present.<br>Not to trigger emotion, but to restore agency.</p></div>
+      <div class="manifesto-slide"><p>Because war has many dimensions.<br>And unless we find ways to feel what we cannot see,<br>we become numb to the horrors,<br>untouched by the very catastrophes we allow to continue.</p></div>
+      <div class="manifesto-slide manifesto-end-slide"><p>&#8212;<br><span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;color:var(--text-muted);font-style:normal;">June 2025</span></p></div>
+    </div>
+  </div>
+  <div class="manifesto-scroll-hint">&#8592;&nbsp;&nbsp;drag or scroll&nbsp;&nbsp;&#8594;</div>
+</div>
 
 <section id="manifesto">
   <p class="section-label">Manifesto</p>
@@ -280,10 +360,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
         <span class="award-tag">Live Biofeedback</span>
         <span class="award-tag">Soundscape</span>
       </div>
-    </div>
-  </div>
-
-  <!-- 002 THE ENEMY -->
+      <a href="https://www.in36000ways.org" target="_blank" rel="noopener" class="work-link">&#8599; Project website</a>
   <div class="work-item reverse" id="work-2">
     <div class="work-media" style="aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#0a0a08;">
       <img src="theenemy.jpg" alt="The Enemy" loading="lazy" style="width:100%;height:100%;object-fit:contain;display:block;">
@@ -451,7 +528,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
 
 <section id="about">
   <div class="about-portrait">
-    <img src="IMG_5341.jpg" alt="Karim Ben Khelifa">
+    <img src="IMG_5341-MediumB.jpg" alt="Karim Ben Khelifa">
     <p class="about-portrait-caption">Berlin, 2024</p>
   </div>
   <div class="about-text">
@@ -548,6 +625,88 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
 </footer>
 
 <script>
+// MANIFESTO AUDIO
+var audioPlaying = false;
+function toggleAudio() {
+  var audio = document.getElementById('manifestoAudio');
+  var btn = document.getElementById('audioManifestoBtn');
+  var label = btn.querySelector('.manifesto-btn-label');
+  var icon = btn.querySelector('.manifesto-btn-icon');
+  if (audioPlaying) {
+    audio.pause();
+    audio.currentTime = 0;
+    audioPlaying = false;
+    label.textContent = 'Listen to the manifesto';
+    icon.textContent = '▶';
+    btn.classList.remove('active');
+  } else {
+    audio.play();
+    audioPlaying = true;
+    label.textContent = 'Stop';
+    icon.textContent = '◼';
+    btn.classList.add('active');
+  }
+  audio.onended = function() {
+    audioPlaying = false;
+    label.textContent = 'Listen to the manifesto';
+    icon.textContent = '▶';
+    btn.classList.remove('active');
+  };
+}
+
+// MANIFESTO TEXT CAROUSEL
+function toggleTextManifesto() {
+  var carousel = document.getElementById('manifestoCarousel');
+  var btn = document.getElementById('textManifestoBtn');
+  var label = btn.querySelector('.manifesto-btn-label');
+  var icon = btn.querySelector('.manifesto-btn-icon');
+  var isOpen = carousel.classList.contains('open');
+  if (isOpen) {
+    carousel.classList.remove('open');
+    btn.classList.remove('active');
+    label.textContent = 'Read the manifesto';
+    icon.textContent = '→';
+  } else {
+    carousel.classList.add('open');
+    btn.classList.add('active');
+    label.textContent = 'Close manifesto';
+    icon.textContent = '×';
+    carousel.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+}
+
+// CAROUSEL DRAG SCROLL
+var mTrack = document.getElementById('manifestoTrack');
+var mDragging = false, mStartX = 0, mScrollLeft = 0;
+mTrack.addEventListener('mousedown', function(e) {
+  mDragging = true;
+  mStartX = e.pageX - mTrack.offsetLeft;
+  mScrollLeft = mTrack.scrollLeft;
+  mTrack.style.cursor = 'grabbing';
+});
+document.addEventListener('mouseup', function() {
+  mDragging = false;
+  mTrack.style.cursor = 'ew-resize';
+});
+mTrack.addEventListener('mousemove', function(e) {
+  if (!mDragging) return;
+  e.preventDefault();
+  var x = e.pageX - mTrack.offsetLeft;
+  mTrack.scrollLeft = mScrollLeft - (x - mStartX) * 1.5;
+});
+mTrack.addEventListener('wheel', function(e) {
+  e.preventDefault();
+  mTrack.scrollLeft += e.deltaY + e.deltaX;
+}, {passive:false});
+var mTouchStartX = 0, mTouchScroll = 0;
+mTrack.addEventListener('touchstart', function(e) {
+  mTouchStartX = e.touches[0].pageX;
+  mTouchScroll = mTrack.scrollLeft;
+}, {passive:true});
+mTrack.addEventListener('touchmove', function(e) {
+  mTrack.scrollLeft = mTouchScroll - (e.touches[0].pageX - mTouchStartX) * 1.5;
+}, {passive:true});
+
 // NAV NAME visibility
 // HORIZONTAL SCROLL - wheel and drag
 const track = document.getElementById('conflictsTrack');

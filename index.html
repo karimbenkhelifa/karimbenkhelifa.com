@@ -266,8 +266,10 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
   .fieldwork-title{font-size:clamp(1.8rem,7vw,2.5rem);line-height:1.1;}
   .fieldwork-desc{font-size:0.9rem;line-height:1.7;}
   .fieldwork-pivot{font-size:0.9rem;line-height:1.7;}
-  .conflict-item img{width:85vw;height:auto;}
-  .conflict-placeholder{width:85vw;height:calc(85vw * 0.667);}
+  .work-media{height:auto;aspect-ratio:1/1;min-height:unset;}
+  .work-media img{width:100%;height:100%;object-fit:cover;display:block;}
+  .conflict-item img{width:85vw;height:85vw;object-fit:cover;}
+  .conflict-placeholder{width:85vw;height:85vw;}
 
   /* ABOUT */
   #about{grid-template-columns:1fr;gap:2rem;padding:5rem 1.2rem;}
@@ -433,7 +435,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
     <div class="work-info">
       <p class="work-number">002</p>
       <h3 class="work-title">In 36,000 Ways</h3>
-      <p class="work-year">2023 &#8212; Ongoing</p>
+      <p class="work-year">2024 &#8212; Ongoing</p>
       <p class="work-desc">When a missile strikes, it can produce up to 36,000 shrapnels like the one the visitor holds in their hand.<br><br>
       The fragments were collected by the artist from the front lines of southern Ukraine. Visitors stand inside a suspended cloud of several hundred fragments, frozen in the air. Spatial sound and live biofeedback compose the soundscape based on their physiological response. Technologies used to kill and destroy are here repurposed to care and feel presence. The current version is a single-visitor sensory installation. A full-scale, multi-visitor version is in active development.</p>
       <div class="work-awards">
@@ -481,7 +483,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
     <div class="work-info">
       <p class="work-number">004</p>
       <h3 class="work-title">Seven Grams</h3>
-      <p class="work-year">2018 &#8212; 2022</p>
+      <p class="work-year">2019 &#8212; 2022</p>
       <p class="work-desc">An augmented reality experience that turns your smartphone into the instrument of its own indictment. Seven grams of rare earth minerals. Every phone. Every hand.<br><br>
       The work reveals the human cost of mineral extraction in the Democratic Republic of Congo, made visible through the very object that depends on it.<br><br>
       Seven Grams is a free app available on iOS and Android.</p>
@@ -504,7 +506,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
       <h2 class="fieldwork-title">From<br>the<br><em>Field</em></h2>
     </div>
     <div>
-      <p class="fieldwork-desc">For almost two decades, working as a frontline photographer for Time, Vanity Fair, Le Monde, Stern and GEO, I covered conflicts across four continents, traveling to over 95 countries. Kosovo. Gaza. Afghanistan. Somalia. The West Bank. Kashmir. Yemen.</p>
+      <p class="fieldwork-desc">For almost two decades, working as a frontline photographer for The New York Times Magazine, Vanity Fair, Le Monde, Stern or GEO Magazines, I covered conflicts across four continents, traveling to over 95 countries. Kosovo. Gaza. Afghanistan. Somalia. The West Bank. The Democratic Republic of Congo. Kashmir. South Sudan. Yemen.</p>
       <p class="fieldwork-pivot">Then I stopped. Because I became convinced that images of conflict don&#8217;t change the people who see them, nor the lives of the people I photographed.</p>
     </div>
   </div>
@@ -628,12 +630,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
       <p>After nearly two decades as a frontline photojournalist, he abandoned the image, convinced that war photography no longer alters how conflict is understood or felt. His work begins where representation fails.</p>
       <p>Rather than documenting war, he builds environments, through engineered absences, perceptual constraints and non-invasive bio-feedback, that require the viewer to actively reassemble what is no longer shown.</p>
       <p>In doing so, he shifts the experience of conflict from the image to the consciousness of the observer, where it cannot be passively consumed.</p>
-      <p>His projects have been developed through residencies and fellowships at MIT, Harvard University, and the Max Planck Institute for Human Development, and presented internationally across Europe and North America.</p>
+      <p>His projects have been developed through residencies and fellowships at the Massachusetts Institute of Technology, Harvard University or the Center for Humans and Machines at the Max Planck Institute for Human Development, and exhibited on four continents.</p>
     </div>
     <div class="credentials">
       <div class="credential-item">
         <span class="credential-year">2026</span>
-        <div class="credential-text"><strong>In 36,000 Ways &#8212; Installation</strong>La Mostra, Venice Film Festival</div>
+        <div class="credential-text"><strong>In 36,000 Ways &#8212; Installation</strong>La Mostra, Venice International Film Festival</div>
       </div>
       <div class="credential-item">
         <span class="credential-year">2026</span>
@@ -649,7 +651,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;o
       </div>
       <div class="credential-item">
         <span class="credential-year">2024</span>
-        <div class="credential-text"><strong>In 36,000 Ways &#8212; Solo Exhibition</strong>Gallery Anahita Sadighi, Berlin</div>
+        <div class="credential-text"><strong>In 36,000 Ways &#8212; Solo Show</strong>Gallery Anahita Sadighi, Berlin</div>
       </div>
       <div class="credential-item">
         <span class="credential-year">2022</span>
@@ -845,15 +847,29 @@ track.addEventListener('mousemove', function(e) {
   track.scrollLeft = dragScrollLeft - (x - dragStartX) * 1.5;
 });
 
-// Touch
-let touchStartX = 0, touchScrollLeft = 0;
+// Touch — tap advances on mobile, drag scrolls on desktop
+let touchStartX = 0, touchScrollLeft = 0, touchMoved = false;
 track.addEventListener('touchstart', function(e) {
   touchStartX = e.touches[0].pageX;
   touchScrollLeft = track.scrollLeft;
+  touchMoved = false;
 }, { passive: true });
 track.addEventListener('touchmove', function(e) {
-  const x = e.touches[0].pageX;
-  track.scrollLeft = touchScrollLeft - (x - touchStartX) * 1.5;
+  const dx = e.touches[0].pageX - touchStartX;
+  if (Math.abs(dx) > 8) {
+    touchMoved = true;
+    track.scrollLeft = touchScrollLeft - dx * 1.5;
+  }
+}, { passive: true });
+track.addEventListener('touchend', function(e) {
+  if (!touchMoved) {
+    // Tap — advance to next image
+    const items = track.querySelectorAll('.conflict-item');
+    const itemW = items[0] ? items[0].offsetWidth + 4 : track.offsetWidth;
+    const currentIndex = Math.round(track.scrollLeft / itemW);
+    const nextIndex = (currentIndex + 1) % items.length;
+    track.scrollTo({ left: nextIndex * itemW, behavior: 'smooth' });
+  }
 }, { passive: true });
 
 // EYEBROW fade out as hero scrolls away
